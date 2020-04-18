@@ -42,3 +42,7 @@ To restore a version of your blog :
  ```
  Where the args '20200415' is the backup you wanna restore.
  
+ ### RAF
+ 1. Externalise secret in a .env file
+ 2. Possibility to choose backup name
+ 
