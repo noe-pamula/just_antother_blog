@@ -1,0 +1,43 @@
+version: '3.3'
+services:
+  mysql:
+    image: mysql:5.7
+    restart: always
+    expose:
+     - 3306
+    environment:
+     MYSQL_ROOT_PASSWORD: somewordpress
+     MYSQL_DATABASE: wordpress
+     MYSQL_USER: wordpress
+     MYSQL_PASSWORD: wordpress
+    volumes:
+     - mysql_data:/var/lib/mysql
+  wordpress:
+    image: wordpress
+    restart: always
+    ports:
+     - "8000:80"
+    depends_on:
+     - mysql
+    environment:
+     - "WORDPRESS_DB_NAME=wordpress"
+     - "WORDPRESS_DB_USER=wordpress"
+     - "WORDPRESS_DB_PASSWORD=wordpress"
+    volumes:
+     - wordpress_files:/var/www/html
+  backup:
+    image: aveltens/wordpress-backup
+    restart: always
+    volumes:
+     - ./backups:/backups
+     - wordpress_files:/var/www/html
+    depends_on:
+     - mysql
+    environment:
+     - "MYSQL_ENV_MYSQL_DATABASE=wordpress"
+     - "MYSQL_ENV_MYSQL_USER=wordpress"
+     - "MYSQL_ENV_MYSQL_PASSWORD=wordpress"
+     - "MYSQL_PORT_3306_TCP_PORT=3306"
+volumes:
+  mysql_data:
+  wordpress_files:
