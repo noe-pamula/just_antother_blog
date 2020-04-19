@@ -2,6 +2,10 @@
 
 This is a docker-compose file that able to create or restore a wordpress blog.
 
+## Prerequisites 
+
+. Docker
+
 ## Quick Start
 
  ```sh
@@ -42,7 +46,7 @@ To restore a version of your blog :
  ```
  Where the args '20200415' is the backup you wanna restore.
  
- ### RAF
+ ### TODO
  1. Externalise secret in a .env file
  2. Possibility to choose backup name
  
