@@ -1,3 +1,4 @@
 backups/*
 www/
 .idea
+.env
