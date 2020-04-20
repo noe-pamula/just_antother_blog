@@ -3,16 +3,26 @@
 This is a docker-compose file that able to create or restore a wordpress blog.
 
 ## Prerequisites 
-
-. Docker
+- a computer or a server
+- Docker
+- make
 
 ## Quick Start
-
  ```sh
 git clone https://github.com/noe-pamula/just_antother_blog.git
 cd just_antother_blog
 docker-compose up -d
 ```
+and (
+ ```sh
+docker-compose up -d
+```
+or
+ ```sh
+make start
+```
+)
+
 And now go on you favorite browser:
  ```sh
  http://localhost:8000
