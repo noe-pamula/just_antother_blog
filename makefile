@@ -1,5 +1,10 @@
 help: info
 
+build:
+	docker-compose down
+	docker-compose build --no-cache backup
+	docker-compose up -d
+
 start:
 	@docker-compose up -d
 
@@ -20,7 +25,7 @@ restore:
 	@docker-compose restart
 
 backup:
-	@docker-compose exec backup backup
+	@docker-compose exec backup backup $(filter-out $@,$(MAKECMDGOALS))
 
 info: title
 	@echo .
@@ -46,6 +51,8 @@ info: title
 	@echo   restore : This command will make a restore of you WordPress.
 	@echo             Becarrefull, this command need a argument. You should put the name of the backup
 	@echo             The backup name is the backup date in the format yyyymmdd (example 20200420)
+	@echo      build: This command will build again the dockerfile without using cache.
+	@echo             Use for develop or contribute.
 
 title :
 	@echo         __           __     __                 __  __                 ____  __

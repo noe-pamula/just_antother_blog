@@ -5,7 +5,7 @@ This is a docker-compose file that able to create or restore a wordpress blog.
 ## Prerequisites 
 - a computer or a server
 - Docker
-- make
+- make (optional)
 
 ## Quick Start
  ```sh
@@ -42,21 +42,36 @@ To backup your blog :
 
  ```sh
  docker-compose exec backup backup 
+ 
+ or 
+ 
+ make backup
  ```
  
 It's create a backup in a repository named backups.
 Each backups are timestamped with the date of the day: yyyymmdd
+
+You can choose a name for you backup
+
+ ```sh
+ docker-compose exec backup backup the-name-of-backup
+ 
+ or 
+ 
+ make backup the-name-of-backup
+ ```
+
  
 ## Restore your blog
 
 To restore a version of your blog : 
  
  ```sh 
- docker-compose exec backup restore 20200415 
- ```
- Where the args '20200415' is the backup you wanna restore.
+ docker-compose exec backup restore the-name-of-backup
  
- ### TODO
- 1. Externalise secret in a .env file
- 2. Possibility to choose backup name
+ or 
+ 
+ make restore the-name-of-backup
+ ```
+ Where the args 'the-name-of-backup' is the backup you wanna restore.
  
